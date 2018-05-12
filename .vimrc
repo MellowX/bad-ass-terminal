@@ -3,6 +3,8 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
@@ -25,7 +27,7 @@ execute pathogen#infect()
 " theme
 " ----
 syntax on
-colorscheme wombat
+" colorscheme wombat
 " ----
 " End theme
 

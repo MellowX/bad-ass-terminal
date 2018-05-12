@@ -1,58 +1,56 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export ZSH=$HOME/.oh-my-zsh
+
+# zsh tmux settings
+#ZSH_TMUX_AUTOSTART='true'
+
+TERM=xterm-256color
+ZSH_THEME="powerlevel9k"
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_MODE='awesome-patched'
+
+DISABLE_AUTO_TITLE="true"
+
+POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='green'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='green'
+#POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+
+
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history background_jobs time)
+
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
+#POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE0B1 %d.%m.%y}"
+
+POWERLEVEL9K_STATUS_VERBOSE=false
+export DEFAULT_USER="$USER"
+
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jessicadeen/.oh-my-zsh
-export TERM=screen-256color
+#  export ZSH=/home/ng/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE='awesome-patched'
-ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="powerlevel9k"
 
-# POWERLEVEL9K_IP_INTERFACE='en0'
-# POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
-
-# zsh tmux settings
-ZSH_TMUX_AUTOSTART='true'
-
-## Powerlevel9k Settings
-POWERLEVEL9K_HISTORY_BACKGROUND='green'
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
-}❯ "
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
-
-# # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then                                                                               
-#   function refresh {                                                                                
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-#     export $(tmux show-environment | grep "^DISPLAY")                                               
-#   }                                                                                                 
-# else                                                                                                  
-#   function refresh { }                                                                              
-# fi
-
-# # Then, I define a preexec hook that calls refresh before each new command that gets executed:
-# function preexec {                                                                                    
-#     refresh                                                                                           
-# }
-
-# POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
-## 
-
-# Default username to hide "user@hostname" info
-DEFAULT_USER="jessicadeen"
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -96,10 +94,12 @@ DEFAULT_USER="jessicadeen"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
+plugins=(
+  sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions
+)
 
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -126,29 +126,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-
 # Example aliases
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users/jessicadeen'
-# alias EDITOR=nvim
-
-#Powerline
-if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-    PATH="$HOME/Library/Python/2.7/bin:$PATH"
-fi
-
-repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
-. $repository_root/powerline/bindings/zsh/powerline.zsh
-
-export PATH=$PATH:/Users/jessicadeen/bin
-export GOPATH=/Users/jessicadeen/go 
-export PATH=$GOPATH/bin:$PATH
-
-#acs-engine
-alias acse="$GOPATH/src/github.com/Azure/acs-engine/bin/acs-engine"
-
-autoload bashcompinit && bashcompinit
-source '/Users/jessicadeen/lib/azure-cli/az.completion'
-
-
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
